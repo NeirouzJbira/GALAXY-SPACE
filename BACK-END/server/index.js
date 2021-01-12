@@ -1,25 +1,26 @@
-  
 var createError = require('http-errors');
 const express = require("express");
 var path = require('path');
 const mongoose= require("mongoose");
 require("dotenv").config();
 
-
 const imageModule = require ('../database/image')
+const multerConfig = require('../multer')
+
+
 const playersRouter = require('./routes/player');
 
 const app = express();
 
 // add mongoose 
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/ricker');
+// var mongoose = require('mongoose');
+// mongoose.connect('mongodb://localhost/ricker');
 
 // add cors 
-var cors = require('cors');
-app.use(cors({
-  origin:'http://localhost:4200'
-}));
+// var cors = require('cors');
+// app.use(cors({
+//   origin:'http://localhost:4200'
+// }));
 
 
 
@@ -35,6 +36,18 @@ app.use(cors({
 
 // app.use (express.static('images'))
 
+
 // const PORT = process.env.PORT || 4000;
 // app.listen(PORT, () => console.log(`the server is running on port: ${PORT}`));
+
+app.post('/myPics',multerConfig, (req,res) => {
+    console.log(req.files)
+    res.json({
+        msg: "DONE"
+    })
+})
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`the server is running on port: ${PORT}`));
+
 
