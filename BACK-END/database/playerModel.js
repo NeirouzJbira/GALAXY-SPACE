@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 var player = new Schema({
     email : {type:String, require:true},
@@ -9,11 +9,11 @@ var player = new Schema({
     
 });
 
-schema.statics.hashPassword = function hashPassword(password){
+player.statics.hashPassword = function hashPassword(password){
     return bcrypt.hashSync(password,10);
 }
 
-schema.methods.isValid = function(hashedpassword){
+player.methods.isValid = function(hashedpassword){
     return  bcrypt.compareSync(hashedpassword, this.password);
 } 
 

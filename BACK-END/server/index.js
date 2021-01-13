@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
     console.log("MONGO connected")
 }
 );
-//////
+////// putting the image to send it to cloundinary 
 app.use (express.static('images'))
 app.post('/myPics',multerConfig, (req,res) => {
     console.log(req.files)
