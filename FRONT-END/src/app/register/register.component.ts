@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';@Component({
+import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+
+@Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
 
   myForm: FormGroup;
@@ -18,6 +21,7 @@ export class RegisterComponent implements OnInit {
 }
   ngOnInit(): void {
   }
+  
   passValidator(control: AbstractControl) {
     if (control && (control.value !== null || control.value !== undefined)) {
       const cnfpassValue = control.value;
