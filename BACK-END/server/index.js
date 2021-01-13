@@ -7,9 +7,9 @@ const app = express();
 
 //UPLODING IMAGE
 const multerConfig = require('../multer')
+const imageModule = require ('../database/image')
 
 //REGISTER & LOGIN
-const imageModule = require ('../database/image')
 const playersRouter = require('./routes/player');
 
 
