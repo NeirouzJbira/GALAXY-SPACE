@@ -1,7 +1,6 @@
 const multer = require('multer');
 
 // store files on disk
-
 const fileStorage = multer.diskStorage({
     destination: 'images',
     filename: (req,file,cb) => {
@@ -10,7 +9,6 @@ const fileStorage = multer.diskStorage({
 })
 
 // filter format
-
 const fileFilter = (req,file,cb) => {
     if (
         file.mimetype === 'image/png' ||
