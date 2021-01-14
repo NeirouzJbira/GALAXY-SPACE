@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose= require("mongoose");
 const imageModule = require ('../database/image')
 const multerConfig = require('../multer')
+const cloud = require("../cloudinary")
+const fs = require("fs")
 require("dotenv").config();
 
 const app = express();
@@ -23,17 +25,22 @@ app.use ('/images',express.static('images'))
 
 // upload image
 
-app.post('/myPics',multerConfig, (req,res) => {
-    console.log(req.files[0])
+app.post('/myPics',multerConfig, async (req,res) => {
+    // change the local storage to cloud storage
+    const result = await cloud.uploads(req.files[0].path)
     const imageDetails = {
         imageName : req.files[0].originalname ,
-        url : req.files[0].path
+        url : result.url
     }
 
     // save image in mongoDB
 
     const image = new imageModule(imageDetails)
     image.save()
+    // delete image saved locally
+
+    fs.unlinkSync(req.files[0].path)
+
     res.json({
         msg: "DONE",
         image: image
