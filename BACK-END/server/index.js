@@ -28,10 +28,6 @@ const playerModel = require('../database/playerModel');
 
 //REGISTER & LOGIN
 const playersRouter = require('./routes/player');
-// INDEX ROUTE
-app.get("/",(req,res )=>{
-res.send("invalid endpoint")
-})
 
 // ADDING CORS 
 var cors = require('cors');
@@ -44,10 +40,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 // ADDING BODY-PARSER middlware
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+// PASSPORT middlware
+app.use(passport.initialize());
+app.use(passport.session());
 
+require('../database/passport',passport)
 app.use('/players', playersRouter);
-
+// INDEX ROUTE
+app.get("/",(req,res )=>{
+    res.send("invalid endpoint")
+    })
 
 
 ////// putting the image to send it to cloundinary 

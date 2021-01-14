@@ -20,10 +20,16 @@ module.exports.getUserByUsername = function (username, callabck){
 };
 module.exports.addPlayer = function (newPlayer, callback){
     bcrypt.genSalt(10 , (err , salt )=>{
-        bcrypt.hash(newPlayer.password, salt , (err,hashPassword)=>{
+        bcrypt.hash(newPlayer.password, salt , (err,hash)=>{
             if (err) throw err ;
-            newPlayer.password = hashPassword; 
+            newPlayer.password = hash; 
             newPlayer.save(callback)
         })
     });
-}
+}; 
+module.exports.comparePassword = function(playerPassword, hash, callback){
+    bcrypt.compare(playerPassword, hash, (err, isMatch) => {
+      if(err) throw err;
+      callback(null, isMatch);
+    });
+};
