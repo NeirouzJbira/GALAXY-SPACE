@@ -47,7 +47,7 @@ app.post('/register',  function(req,res,next){
        });
   
 
-// Create a verification token for this player
+/*// Create a verification token for this player
 var token = new Token({ _playerId: player._id, token: crypto.randomBytes(16).toString('hex') });
  
 // Save the verification token
@@ -61,10 +61,10 @@ transporter.sendMail(mailOptions, function (err) {
   if (err) { return res.status(500).send({ msg: err.message }); }
         res.status(200).send('A verification email has been sent to ' + player.email + '.');
       })
-})
+})*/
 })
 
-app.post('/login',  function(req,res){
+/*app.post('/login',  function(req,res){
 // Make sure the player has been verified
 if (!player.isVerified) return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' }); 
 
@@ -106,7 +106,7 @@ app.get('/confirmation', function(req,res){
           });
       });
     });
-    
+    */
 ////// putting the image to send it to cloundinary 
 app.use (express.static('images'))
 app.post('/myPics',multerConfig, (req,res) => {
