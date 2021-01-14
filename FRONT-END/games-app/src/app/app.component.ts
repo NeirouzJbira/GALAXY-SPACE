@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public computerResult: string;
   public result : string
+  public results = { computer: 0, player: 0 };
   private userResult : string;
 
 
@@ -25,30 +26,37 @@ export class AppComponent {
   }
   private calculateWinner(): void {
     if(this.userResult === this.computerResult) {
-      this.result ='There was a tie / draw'
+      this.result ='There was a tie / draw 🍬'
     }
     if(this.userResult === 'rock' && this.computerResult === 'paper') {
-      this.result ='Computer wins'
+      this.results.computer++;
+      this.result ='Computer win 🐒'
     }
 
-    if(this.userResult === 'rock' && this.computerResult === 'scissors') {
-      this.result ='You win'
+    if(this.userResult === 'rock' && this.computerResult === 'scissors') {   // all the conditions options
+      this.results.player++;                                                        
+                                                                          
+      this.result ='Congradulation You Win 😎 '
     }
 
     if(this.userResult === 'paper' && this.computerResult === 'rock') {
-      this.result ='You win'
+      this.results.player++;
+      this.result ='Congradulation You Win 😎 '
     }
 
     if(this.userResult === 'paper' && this.computerResult === 'scissors') {
-      this.result ='Computer wins'
+      this.results.computer++;
+      this.result ='Computer win 🐒'
     }
 
     if(this.userResult === 'scissors' && this.computerResult === 'rock') {
-      this.result ='Computer wins'
+      this.results.computer++;
+      this.result ='Computer win 🐒 '
     }
 
     if(this.userResult === 'scissors' && this.computerResult === 'paper') {
-      this.result ='Computer wins'
+      this.results.player++;
+      this.result ='Congradulation You Win 😎'
     }
 
   }
