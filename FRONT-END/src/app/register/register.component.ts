@@ -21,7 +21,9 @@ export class RegisterComponent implements OnInit {
 }
   ngOnInit(): void {
   }
-  
+  // isValid(controlName) {
+  //   return this.myForm.get(controlName).invalid && this.myForm.get(controlName).touched;
+  // }
   passValidator(control: AbstractControl) {
     if (control && (control.value !== null || control.value !== undefined)) {
       const cnfpassValue = control.value;
