@@ -9,3 +9,21 @@ var PlayerSchema = mongoose.Schema({
 })
 
 const Player = module.exports = mongoose.model('Player',PlayerSchema);
+
+module.exports.getUserById = function (Id, callabck){
+    Player.findById(Id, callabck);
+};
+
+module.exports.getUserByUsername = function (username, callabck){
+    const query ={username : username}
+    Player.findOne(query, callabck);
+};
+module.exports.addPlayer = function (newPlayer, callback){
+    bcrypt.genSalt(10 , (err , salt )=>{
+        bcrypt.hash(newPlayer.password, salt , (err,hashPassword)=>{
+            if (err) throw err ;
+            newPlayer.password = hashPassword; 
+            newPlayer.save(callback)
+        })
+    });
+}
