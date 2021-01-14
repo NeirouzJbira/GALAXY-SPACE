@@ -1,22 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';4
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
 
-import { FormsModule,  ReactiveFormsModule } from '@angular/forms';
+import { QuizComponent } from './quiz/quiz.component';
+import { RpsComponent } from './rps/rps.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent
+    QuizComponent,
+    RpsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule, 
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
