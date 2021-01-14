@@ -6,17 +6,21 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
 import { QuizComponent } from './quiz/quiz.component';
 import { RpsComponent } from './rps/rps.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuizComponent,
-    RpsComponent
+    RpsComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +29,10 @@ import { RpsComponent } from './rps/rps.component';
     MatButtonModule,
     MatCardModule,
     MatIconModule, 
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
