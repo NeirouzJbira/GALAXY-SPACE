@@ -17,13 +17,34 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
 }
 );
 
-app.use (express.static('images'))
+//select the path for the static folder containing the images
+
+app.use ('/images',express.static('images'))
+
+// upload image
 
 app.post('/myPics',multerConfig, (req,res) => {
-    console.log(req.files)
+    console.log(req.files[0])
+    const imageDetails = {
+        imageName : req.files[0].originalname ,
+        url : req.files[0].path
+    }
+
+    // save image in mongoDB
+
+    const image = new imageModule(imageDetails)
+    image.save()
     res.json({
-        msg: "DONE"
+        msg: "DONE",
+        image: image
     })
+})
+
+// retrive images from databases
+
+app.get('/myPics', async(req,res) => {
+    const images = await imageModule.find()
+    res.json(images)
 })
 
 const PORT = process.env.PORT || 4000;
