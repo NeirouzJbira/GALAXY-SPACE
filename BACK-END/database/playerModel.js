@@ -1,20 +1,11 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 var bcrypt = require('bcryptjs');
 
-var player = new Schema({
-    email : {type:String, require:true},
+// Player Schema
+var PlayerSchema = mongoose.Schema({
     username: {type:String, require:true ,unique: true },
+    email : {type:String, require:true},
     password:{type:String, require:true, minlength: 8},
-    
-});
+})
 
-player.statics.hashPassword = function hashPassword(password){
-    return bcrypt.hashSync(password,10);
-}
-
-player.methods.isValid = function(hashedpassword){
-    return  bcrypt.compareSync(hashedpassword, this.password);
-} 
-
-module.exports = mongoose.model('player',player);
+const Player = module.exports = mongoose.model('Player',PlayerSchema);
