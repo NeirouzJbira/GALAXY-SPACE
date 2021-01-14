@@ -1,25 +1,24 @@
 var express = require('express');
 var router = express.Router();
-var jwt = require('jsonwebtoken');
-var player = require('../../database/playerModel');
+// var jwt = require('jsonwebtoken');
+// var Player = require('../../database/playerModel');
 
-router.post('/register',  function(req,res,next){
-
-    var Player = new player({
-      email: req.body.email,
-      username: req.body.username,
-      password: Player.hashPassword(req.body.password),
-      
-    });
-  
-  let promise = user.save();
-
-  promise.then(function(playerObject){
-    return res.status(201).json(playerObject);
-  });
-
-  promise.catch(function(err){
-    return res.status(501).json({message: 'Error registering user.'})
-  });
-
+// Register
+router.get('/Register',  function(req,res,next){
+   res.send('register')
 })
+
+// Authentificate
+router.post('/Authentificate',  function(req,res,next){
+  res.send('AUTHENTICATE')
+})
+// PROFILE 
+router.get('/Profile',  function(req,res,next){
+  res.send('PROFILE')
+})
+// VALIDATE 
+router.get('/Validate',  function(req,res,next){
+  res.send('VALIDATE')
+})
+
+module.exports = router;
