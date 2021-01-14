@@ -90,7 +90,7 @@ app.post('/myPics',multerConfig, (req,res) => {
         image: image
     })
 })
-
+})
 // retrive images from databases
 app.get('/myPics', async(req,res) => {
     const images = await imageModule.find()
@@ -100,5 +100,4 @@ app.get('/myPics', async(req,res) => {
 // START SERVER 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`the server is running on port : ${PORT}`));
-
 
