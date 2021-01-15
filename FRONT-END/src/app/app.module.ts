@@ -52,9 +52,6 @@ const appRoutes: Routes =  [
     FormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    
-    
-    
   ],
   providers: [ValidateService,AuthService],
   bootstrap: [AppComponent]
