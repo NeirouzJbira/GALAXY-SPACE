@@ -6,15 +6,11 @@ const mongoose = require("mongoose");
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-
-
 const cloud = require("../cloudinary")
 const fs = require("fs")
 
-
 require("dotenv").config();
 const app = express();
-
 
 // ADDING MONGOOSE
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
