@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ValidateService} from '../services/validate.service';
-import {AuthService} from '../services/auth.service';
+import {AuthService, IPlayer} from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
 export class RegisterComponent implements OnInit {
   
-  username: String;
-  email: String;
-  password: String;
+  username: string;
+  email: string;
+  password: string;
 
   constructor(
     private validateService: ValidateService,
@@ -25,7 +26,7 @@ export class RegisterComponent implements OnInit {
   
   onRegisterSubmit() {
     // console.log('you have submitting ')
-  const player = {
+  const player : IPlayer = {
     username: this.username,
     email: this.email,
     password: this.password
@@ -42,7 +43,7 @@ export class RegisterComponent implements OnInit {
    }
    // Register user
    this.authService.registerplayer(player).subscribe(data => {
-    if(data) {
+    if(data.success) {
       console.log('You are now registered and can now login');
       this.router.navigate(['/login']);
     } else {
