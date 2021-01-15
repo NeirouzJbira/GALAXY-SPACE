@@ -20,6 +20,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
 import {ValidateService} from './services/validate.service';
+import {AuthService} from './services/auth.service'
 
 
 const appRoutes: Routes =  [
@@ -55,7 +56,7 @@ const appRoutes: Routes =  [
     
     
   ],
-  providers: [ValidateService],
+  providers: [ValidateService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

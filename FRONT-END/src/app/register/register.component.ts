@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ValidateService} from '../services/validate.service'
+import {ValidateService} from '../services/validate.service';
+import {AuthService} from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +14,11 @@ export class RegisterComponent implements OnInit {
   email: String;
   password: String;
 
-  constructor(private validateService: ValidateService) { }
+  constructor(
+    private validateService: ValidateService,
+    private authService:AuthService,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
   }
@@ -34,6 +40,16 @@ export class RegisterComponent implements OnInit {
     console.log('please use a valid email');
     return false;
    }
+   // Register user
+   this.authService.registerplayer(player).subscribe(data => {
+    if(data) {
+      console.log('You are now registered and can now login');
+      this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/register']);
+      console.log('Something went wrong');
+    }
+  });
+}
 }
 
-}
