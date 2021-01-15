@@ -20,6 +20,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   registerplayer(player : IPlayer ) {
+  
     return this.http.post
     <{
       success : boolean,
