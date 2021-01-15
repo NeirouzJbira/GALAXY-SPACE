@@ -6,17 +6,40 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 
-import { QuizComponent } from './quiz/quiz.component';
 import { RpsComponent } from './rps/rps.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { ProfileComponent } from './profile/profile.component';
+import {ValidateService} from './services/validate.service';
+import {AuthService} from './services/auth.service'
+
+
+const appRoutes: Routes =  [
+  {path:'', component: HomepageComponent},
+  {path:'register', component: RegisterComponent},
+  {path:'login', component: LoginComponent},
+  {path:'profile', component: ProfileComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
+    NavbarComponent,
+    RpsComponent,
     QuizComponent,
-    RpsComponent
+    LoginComponent,
+    RegisterComponent,
+    HomepageComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,9 +48,15 @@ import { RpsComponent } from './rps/rps.component';
     MatButtonModule,
     MatCardModule,
     MatIconModule, 
-    MatToolbarModule
+    MatToolbarModule,
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot(appRoutes),
+    
+    
+    
   ],
-  providers: [],
+  providers: [ValidateService,AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
