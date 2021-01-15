@@ -1,16 +1,29 @@
 var createError = require('http-errors');
 const express = require("express");
 var path = require('path');
+const mongoose= require("mongoose");
+var Player = require('../database/playerModel');
+var Token= require('../database/token');
+require("dotenv").config();
+const app = express();
 
-const mongoose = require("mongoose");
+// CONFIRMATION EMAIL
+var crypto = require('crypto');
+var nodemailer = require('nodemailer');
+//UPLODING IMAGE
+const multerConfig = require('../multer')
+
+
 const passport = require('passport');
 const bodyParser = require('body-parser');
+
+const imageModule = require ('../database/image')
 
 const cloud = require("../cloudinary")
 const fs = require("fs")
 
 require("dotenv").config();
-const app = express();
+
 
 // ADDING MONGOOSE
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
@@ -22,11 +35,34 @@ mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
     console.log("MONGO connected")
 }
 );
+app.get('/register', function (req, res) {
+    res.send('hello world')
+  })
+  
+
+  app.post('/Register',  function(req,res,next){
+    let newPlayer  = new Player({
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+      
+    });    
+  
+  Player.addPlayer(newPlayer,(err)=>{
+  if (err){
+    console.log(err);
+    res.json({success : false , msg :"failed to register player "});
+  } else {
+    res.json({success : true , msg :" player registered "});
+  };
+  
+  });
+})
+
 
 
 //UPLODING IMAGE
-const multerConfig = require('../multer');
-const imageModule = require ('../database/image');
+//const imageModule = require ('../database/image');
 
 // IMPORT IL DB (PLAYER MODEL)
 const playerModel = require('../database/playerModel');

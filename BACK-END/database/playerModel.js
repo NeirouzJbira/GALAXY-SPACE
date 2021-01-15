@@ -1,14 +1,17 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-// Player Schema
-var PlayerSchema = mongoose.Schema({
-    username: {type:String, require:true ,unique: true },
+var player = new mongoose.Schema({
+    _id: Number,
     email : {type:String, require:true},
+    username: {type:String, require:true ,unique: true },
     password:{type:String, require:true, minlength: 8},
-})
+    isVerified: { type: Boolean, default: false }, 
+    passwordResetToken: String,
+    
+},);
 
-const Player = module.exports = mongoose.model('Player',PlayerSchema);
+const Player = module.exports = mongoose.model('Player',player);
 
 module.exports.getUserById = function (Id, callabck){
     Player.findById(Id, callabck);
