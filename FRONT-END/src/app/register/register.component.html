@@ -1,39 +1,24 @@
-<div class="formcontainer">
-    <div class="formbody">
-        <form style="width:100%;" [formGroup]="myForm">
-            <div class="header">Register</div>
-            <div>
-            <input type="text" formControlName="email" matInput placeholder="Email" id="email">               
-            <span >Entered email is invalid</span>
-            </div>
 
-            <div>
-             <input type="text" formControlName="username" matInput placeholder="Username" id="user">
-            <span>Username is required</span>
-            </div>
+<div class="register">
+    <h2 class="page-header">Register</h2>
+    <form (submit)="onRegisterSubmit()">
 
-            <div>
-             <input type="password" formControlName="password" matInput placeholder="Password" id="pass">
-             <span>Password is a mandatory field</span>
-            </div>
-            <div>
-             <input type="password" formControlName="checkpassword" matInput placeholder="Re-enter Password" id="checkpassword">
-             <span>Password and confirm password should match</span>
-            </div>
-            <div style="margin-top:20px;">
-                <button class="form-btn" >Register</button>
-            </div>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text"  [(ngModel)]="username" name="username" class="form-control" id="username" placeholder="Enter Username">
+      </div>
 
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" [(ngModel)]="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter Email">
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
 
-            <div style="text-align: center;">                
-                
-            </div>
-        </form>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" [(ngModel)]="password" name="password" class="form-control" id="password" placeholder=" Enter Password">
+      </div>
+
+      <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
     </div>
-
-    <div>
-        <div style="width: 290px; padding: 20px;">
-            <button class="form-btn-hollow" >Login</button>
-        </div>
-    </div>
-</div>

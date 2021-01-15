@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
+import {ValidateService} from '../services/validate.service';
+import {AuthService, IPlayer} from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,37 +10,47 @@ import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/fo
 })
 
 export class RegisterComponent implements OnInit {
-
-  myForm: FormGroup;
-  constructor() { 
   
-    this.myForm = new FormGroup({
-      email: new FormControl(null, Validators.email),
-      username: new FormControl(null, Validators.required),
-      password: new FormControl(null, Validators.required),
-      checkpassword: new FormControl(null, this.passValidator)
-    })
-}
+  username: string;
+  email: string;
+  password: string;
+
+  constructor(
+    private validateService: ValidateService,
+    private authService:AuthService,
+    private router: Router,
+    ) { }
+
   ngOnInit(): void {
   }
-  // isValid(controlName) {
-  //   return this.myForm.get(controlName).invalid && this.myForm.get(controlName).touched;
-  // }
-  passValidator(control: AbstractControl) {
-    if (control && (control.value !== null || control.value !== undefined)) {
-      const cnfpassValue = control.value;
-
-      const passControl = control.root.get('password');
-      if (passControl) {
-        const passValue = passControl.value;
-        if (passValue !== cnfpassValue || passValue === '') {
-          return {
-            isError: true
-          };
-        }
-      }
-    }
-
-    return null;
+  
+  onRegisterSubmit() {
+    // console.log('you have submitting ')
+  const player : IPlayer = {
+    username: this.username,
+    email: this.email,
+    password: this.password
   }
+   // Required Fields
+   if(!this.validateService.validateRegister(player)) {
+   console.log('please fill all the field');
+   return false;
+  }
+  // Validate Email
+  if(!this.validateService.validateEmail(player.email)) {
+    console.log('please use a valid email');
+    return false;
+   }
+   // Register user
+   this.authService.registerplayer(player).subscribe(data => {
+    if(data.success) {
+      console.log('You are now registered and can now login');
+      this.router.navigate(['/login']);
+    } else {
+      this.router.navigate(['/register']);
+      console.log('Something went wrong');
+    }
+  });
 }
+}
+

@@ -17,7 +17,12 @@ const multerConfig = require('../multer')
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
+<<<<<<< HEAD
 const imageModule = require ('../database/image')
+=======
+
+
+>>>>>>> f20c5474024c349bc77d660085a78474c1b8df66
 const cloud = require("../cloudinary")
 const fs = require("fs")
 
@@ -192,5 +197,4 @@ app.get('/myPics', async(req,res) => {
 // START SERVER 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`the server is running on port : ${PORT}`));
-
 
