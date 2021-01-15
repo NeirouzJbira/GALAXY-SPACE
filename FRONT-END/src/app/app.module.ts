@@ -19,6 +19,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ProfileComponent } from './profile/profile.component';
+import {ValidateService} from './services/validate.service';
+
 
 const appRoutes: Routes =  [
   {path:'', component: HomepageComponent},
@@ -48,11 +50,12 @@ const appRoutes: Routes =  [
     MatToolbarModule,
     FormsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    
     
     
   ],
-  providers: [],
+  providers: [ValidateService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
