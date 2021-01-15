@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-const imageModule = require ('../database/image')
-const multerConfig = require('../multer')
+
+
 const cloud = require("../cloudinary")
 const fs = require("fs")
 

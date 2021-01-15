@@ -4,19 +4,27 @@ import {HttpClient} from '@angular/common/http';
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 
+ export interface IPlayer {
+  username: string
+    email: string
+    password: string
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  authToken: any;
-  player: any;
+  authToken: string;
+
 
   constructor(private http: HttpClient) { }
 
-  registerplayer(player) {
-    let headers = new HttpHeaders();
-    headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:4000/players/register', player, {headers: headers})
-    // .map(res => res.json());
+  registerplayer(player : IPlayer ) {
+    return this.http.post
+    <{
+      success : boolean,
+       msg : string
+    }>
+  ('http://localhost:4000/players/register', player)
   }
 }
