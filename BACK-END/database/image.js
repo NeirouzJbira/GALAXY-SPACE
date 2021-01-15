@@ -11,4 +11,5 @@ const imageUpload = mongoose.Schema({
     },
 })
 
+
 module.exports = mongoose.model("imageUpload", imageUpload);
