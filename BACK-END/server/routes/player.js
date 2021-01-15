@@ -5,41 +5,39 @@ var Player = require('../../database/playerModel');
 var Token= require('../../database/token');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
+var passport =require ('passport')
 
 // Register
 router.post('/Register',  function(req,res,next){
-  let newPlayer  = new Player({
+  let newPlayer  = {
     username: req.body.username,
     email: req.body.email,
     password: req.body.password,
-    
-  });    
-
-Player.addPlayer(newPlayer,(err)=>{
-if (err){
-  console.log(err);
-  res.json({success : false , msg :"failed to register player "});
-} else {
-  res.json({success : true , msg :" player registered "});
-};
-
-});
+  }
+  let player ;
+  let token ;
+Player.addPlayer(newPlayer)
+.then ((player)=>{ 
+  player = player;
+  console.log(player)
 // Create a verification token for this player
-var token = new Token({ _playerId: Player._id, token: crypto.randomBytes(16).toString('hex') });
- 
+ token = new Token({ _playerId: player._id, token: crypto.randomBytes(16).toString('hex') });
 // Save the verification token
-token.save(function (err) {
-    if (err) { return res.status(500).send({ msg: err.message }); }
-
-// Send the email
+return token.save()
+})
+.then(()=> {
 var transporter = nodemailer.createTransport({ service: 'Sendgrid', auth: { Player: process.env.SENDGRID_USERNAME, pass: process.env.SENDGRID_PASSWORD } });
-var mailOptions = { from: 'no-reply@yourwebapplication.com', to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
-transporter.sendMail(mailOptions, function (err) {
-  if (err) { return res.status(500).send({ msg: err.message }); }
-        res.status(200).send('A verification email has been sent to ' + Player.email + '.');
-      })
+var mailOptions = { from: 'no-reply@yourwebapplication.com', to: newPlayer.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
+// Send the email
+ return transporter.sendMail(mailOptions)
+}) 
+.then(()=> res.status(200).send('A verification email has been sent to ' + Player.email + '.'))
+.catch((err) => {
+  console.log(err)
+  return res.json({success : false , msg :"failed to register player "})
+} );
 })
-})
+
 
 // Authentificate
 router.post('/Authentificate',  function(req,res,next){
@@ -52,31 +50,29 @@ router.post('/Authentificate',  function(req,res,next){
     if (!player) {
       return res.json({ success: false, msg: 'player not found' });
     }
-
-  promise.catch(function(err){
-    return res.status(501).json({message: 'Error registering user.'})
-  })})
-    Player.comparePassword(password, player.password, (err, isMatch) => {
-      if (err) {
-        return res.json({ success: false, msg: err });
-      };
-      // console.log('no err')
-      if (isMatch) {
-        const token = jwt.sign({data: player._id},"secretpleasedon'ttoutch");
-        
-        res.json({
-          success: true,
-          token: `Bearer ${token}`,
-          player: {
-            id: player._id,
-            username: player.username,
-            email: player.email
-          }
-        });
-      } else {
-        return res.json({ success: false, msg: 'Wrong password' });
-      }
-    });
+  })
+  Player.comparePassword(password, player.password, (err, isMatch) => {
+    if (err) {
+      return res.json({ success: false, msg: err });
+    };
+    // console.log('no err')
+    if (isMatch) {
+      const token = jwt.sign({data: player._id},"secretpleasedon'ttoutch");
+      
+      res.json({
+        success: true,
+        token: `Bearer ${token}`,
+        player: {
+          id: player._id,
+          username: player.username,
+          email: player.email
+        }
+      });
+    } else {
+      return res.json({ success: false, msg: 'Wrong password' });
+    }
+  });
+})
 //LOGIN
 router.post('/login',  function(req,res){
   //
@@ -135,6 +131,6 @@ router.get('/Profile',passport.authenticate('bearer', {session : false})  ,funct
     }
   });
 })
-})
+
 
 module.exports = router;
