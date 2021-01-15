@@ -17,18 +17,12 @@ const multerConfig = require('../multer')
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-<<<<<<< HEAD
 const imageModule = require ('../database/image')
-=======
 
-
->>>>>>> f20c5474024c349bc77d660085a78474c1b8df66
 const cloud = require("../cloudinary")
 const fs = require("fs")
 
-
 require("dotenv").config();
-
 
 
 // ADDING MONGOOSE
@@ -63,66 +57,7 @@ app.get('/register', function (req, res) {
   };
   
   });
-  /*// Create a verification token for this player
-  var token = new Token({ _playerId: Player._id, token: crypto.randomBytes(16).toString('hex') });
-   
-  // Save the verification token
-  token.save(function (err) {
-      if (err) { return res.status(500).send({ msg: err.message }); }
-  
-  // Send the email
-  var transporter = nodemailer.createTransport({ service: 'Sendgrid', auth: { Player: process.env.SENDGRID_USERNAME, pass: process.env.SENDGRID_PASSWORD } });
-  var mailOptions = { from: 'no-reply@yourwebapplication.com', to: user.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
-  transporter.sendMail(mailOptions, function (err) {
-    if (err) { return res.status(500).send({ msg: err.message }); }
-          res.status(200).send('A verification email has been sent to ' + Player.email + '.');
-        })
-  })*/
-  })
-  app.post('/login',  function(req,res){
-    //
-  // Make sure the player has been verified
-  if (!Player.isVerified) return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' }); 
-  
-  // Login successful, write token, and send back user
-  res.send({ token: generateToken(Player), player: Player.toJSON() });
-  })
-  
-  app.get('/confirmation', function(req,res){
-    // Find a matching token
-      Token.findOne({ token: req.body.token }, function (err, token) {
-        if (!token) return res.status(400).send({ type: 'not-verified', msg: 'We were unable to find a valid token. Your token my have expired.' });
-    
-    // If we found a token, find a matching player
-        player.findOne({ _id: token._playerId, email: req.body.email }, function (err, player) {
-            if (!player) return res.status(400).send({ msg: 'We were unable to find a user for this token.' });
-            if (user.isVerified) return res.status(400).send({ type: 'already-verified', msg: 'This user has already been verified.' });
-     // Verify and save the user
-           player.isVerified = true;
-            player.save(function (err) {
-                if (err) { return res.status(500).send({ msg: err.message }); }
-                res.status(200).send("The account has been verified. Please log in.");
-            });
-        });
-    });
-    });
-  /*app.post('/resend',function(req,res){
-    // Create a verification token, save it, and send email
-    var token = new Token({ _playerId: Player._id, token: crypto.randomBytes(16).toString('hex') });
-   
-    // Save the token
-    token.save(function (err) {
-        if (err) { return res.status(500).send({ msg: err.message }); }
-  
-        // Send the email
-        var transporter = nodemailer.createTransport({ service: 'Sendgrid', auth: { player: process.env.SENDGRID_USERNAME, pass: process.env.SENDGRID_PASSWORD } });
-        var mailOptions = { from: 'no-reply@codemoto.io', to: Player.email, subject: 'Account Verification Token', text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '\/confirmation\/' + token.token + '.\n' };
-        transporter.sendMail(mailOptions, function (err) {
-            if (err) { return res.status(500).send({ msg: err.message }); }
-            res.status(200).send('A verification email has been sent to ' + Player.email + '.');
-        });
-    });
-  });*/
+})
 
 
 
