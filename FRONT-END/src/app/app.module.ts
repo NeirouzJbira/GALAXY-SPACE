@@ -8,38 +8,41 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {RouterModule, Routes} from '@angular/router';
+import { RouterModule, Routes} from '@angular/router';
+import { ValidateService} from './services/validate.service';
+import { AuthService} from './services/auth.service';
 
 import { AppComponent } from './app.component';
 
-import { RpsComponent } from './rps/rps.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { QuizComponent } from './quiz/quiz.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { RegisterComponent } from './register/register.component';
+import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
-import {ValidateService} from './services/validate.service';
-import {AuthService} from './services/auth.service'
+import { RpsComponent } from './rps/rps.component';
+import { QuizComponent } from './quiz/quiz.component';
+
 
 
 const appRoutes: Routes =  [
   {path:'', component: HomepageComponent},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
-  {path:'profile', component: ProfileComponent}
+  {path:'profile', component: ProfileComponent},
+  {path :'rpsgame', component: RpsComponent},
+  {path:'quizgame', component:QuizComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    RpsComponent,
-    QuizComponent,
-    LoginComponent,
-    RegisterComponent,
     HomepageComponent,
+    RegisterComponent,
+    LoginComponent,
     ProfileComponent,
+    RpsComponent,
+    QuizComponent
   ],
   imports: [
     BrowserModule,
