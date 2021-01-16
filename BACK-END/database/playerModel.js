@@ -5,6 +5,7 @@ var player = new mongoose.Schema({
     email : {type:String, require:true},
     username: {type:String, require:true ,unique: true },
     password:{type:String, require:true, minlength: 8},
+    isVerified:{type:Boolean,default: false},
     passwordResetToken: String
     
 });
@@ -15,9 +16,9 @@ module.exports.getUserById = function (Id, callabck){
     Player.findById(Id, callabck);
 };
 
-module.exports.getUserByUsername = function (username, callabck){
+module.exports.getUserByUsername = function (username){
     const query ={username : username}
-    Player.findOne(query, callabck);
+   return Player.findOne(query).exec();
 };
 
 module.exports.addPlayer = function (newPlayer){
@@ -28,9 +29,7 @@ module.exports.addPlayer = function (newPlayer){
        return Player.create(newPlayer) 
     })
 }; 
-module.exports.comparePassword = function(playerPassword, hash, callback){
-    bcrypt.compare(playerPassword, hash, (err, isMatch) => {
-      if(err) throw err;
-      callback(null, isMatch);
-    });
+
+module.exports.comparePassword = function(playerPassword, hash){
+   return bcrypt.compare(playerPassword, hash)
 };

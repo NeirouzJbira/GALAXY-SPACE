@@ -47,6 +47,7 @@ export class RegisterComponent implements OnInit {
     return false;
    }
    // Register user
+   console.log(player)
    this.authService.registerplayer(player).subscribe(data => {
     if(data.success) {
       console.log('You are now registered and can now login');

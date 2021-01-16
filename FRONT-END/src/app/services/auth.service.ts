@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-// import {HttpClientModule,HttpHeaders} from '@angular/common/http';
+import {HttpClientModule,HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 
- export interface IPlayer {
+export interface IPlayer {
   username: string
     email: string
     password: string
@@ -21,7 +21,6 @@ export interface RegisterPlayer {
 })
 export class AuthService {
   authToken: string;
-
 
   constructor(private http: HttpClient) { }
 
