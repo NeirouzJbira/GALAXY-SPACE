@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClientModule,HttpHeaders} from '@angular/common/http';
+// import {HttpClientModule,HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
@@ -28,4 +28,21 @@ export class AuthService {
     }>
   ('http://localhost:4000/players/register', player)
   }
+
+  authenticatePlayer(player : IPlayer) {
+    return this.http.post
+    <{
+      success : boolean,
+       msg : string
+    }>
+    ('http://localhost:4000/players/authenticate',player)
+      
+  }
+
+  // storeUserData(token, player) {
+  //   localStorage.setItem('id_token', token);
+  //   localStorage.setItem('player', JSON.stringify(player));
+  //   this.authToken = token;
+  //   player = player;
+  // }
 }
