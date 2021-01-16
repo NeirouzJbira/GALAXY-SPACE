@@ -42,7 +42,7 @@ var mailOptions = { from: 'hellohellio782@gmail.com', to: player.email, subject:
 })
 
 
-// Authentificate
+/////////////////////////////////////////////////////////////////////// Authentificate
 router.post('/Authentificate',  function(req,res,next){
   const username = req.body.username;
   const password = req.body.password;
@@ -75,7 +75,7 @@ router.post('/Authentificate',  function(req,res,next){
   });
 })
 
-////////////////////////////////////// LOGIN
+///////////////////////////////////////////////////////////////////////////////// LOGIN
 router.post('/login',  function(req,res){
 // Make sure the player has been verified
 if (!Player.isVerified) return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' }); 
@@ -83,7 +83,7 @@ if (!Player.isVerified) return res.status(401).send({ type: 'not-verified', msg:
 res.send({ token: generateToken(Player), player: Player.toJSON() });
 })
 
-/////////////////////////////////////////////////////////////////CONFIRMATION 
+///////////////////////////////////////////////////////////////////////////////////////CONFIRMATION 
 router.get('/confirmation', function(req,res){
   // Find a matching token
     Token.findOne({ token: req.body.token }, function (err, token) {

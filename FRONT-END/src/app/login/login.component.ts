@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService , RegisterPlayer} from '../services/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,12 +20,19 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit() {
-    console.log(this.username)
-    const registerplayer  = {
+    const registerplayer : RegisterPlayer  = {
       username: this.username,
       password: this.password
     }
-   
-  };
-  
+
+    this.authService.authenticatePlayer(registerplayer).subscribe(data => {
+        console.log(data)
+        // if(data.success) {
+        //   // this.authService.storePlayerData(data.token, data.registerplayer);
+        //   this.router.navigate(['profile']);
+        // } else {
+        //   this.router.navigate(['login']);
+        // }
+    });
+  }
 }

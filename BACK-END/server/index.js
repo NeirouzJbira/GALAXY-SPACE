@@ -17,7 +17,6 @@ const multerConfig = require('../multer')
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-const imageModule = require ('../database/image')
 
 const cloud = require("../cloudinary")
 const fs = require("fs")
@@ -27,42 +26,42 @@ require("dotenv").config();
 
 // ADDING MONGOOSE
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
 }, (err) => {
-    if (err) throw err;
-    console.log("MONGO connected")
+  if (err) throw err;
+  console.log("MONGO connected")
 }
 );
 app.get('/register', function (req, res) {
-    res.send('hello world')
-  })
-  
+  res.send('hello world')
+})
 
-  app.post('/Register',  function(req,res,next){
-    let newPlayer  = new Player({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
-      
-    });    
+
+app.post('/Register',  function(req,res,next){
+  let newPlayer  = new Player({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+    
+  });    
   
   Player.addPlayer(newPlayer,(err)=>{
-  if (err){
-    console.log(err);
-    res.json({success : false , msg :"failed to register player "});
-  } else {
-    res.json({success : true , msg :" player registered "});
-  };
-  
+    if (err){
+      console.log(err);
+      res.json({success : false , msg :"failed to register player "});
+    } else {
+      res.json({success : true , msg :" player registered "});
+    };
   });
 })
 
 
 
 //UPLODING IMAGE
-//const imageModule = require ('../database/image');
+const imageModule = require ('../database/image')
+
 
 // IMPORT IL DB (PLAYER MODEL)
 const playerModel = require('../database/playerModel');
