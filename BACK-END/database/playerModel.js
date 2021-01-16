@@ -4,8 +4,6 @@ var bcrypt = require('bcryptjs');
 var player = new mongoose.Schema({
     email : {type:String, require:true},
     username: {type:String, require:true ,unique: true },
-    imageName : {type: String,required: true},
-    imageUrl : {type: String,required: true},
     password:{type:String, require:true, minlength: 8},
     passwordResetToken: String
     
