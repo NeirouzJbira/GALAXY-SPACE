@@ -4,27 +4,49 @@ import {HttpClient} from '@angular/common/http';
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 
- export interface IPlayer {
+export interface IPlayer {
   username: string
-    email: string
-    password: string
+  email: string
+  password: string
 }
+
+export interface RegisterPlayer {
+  username: string
+  password: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   authToken: string;
 
-
   constructor(private http: HttpClient) { }
 
-  registerplayer(player : IPlayer ) {
+  registerplayer(player:IPlayer ) {
     return this.http.post
     <{
       success : boolean,
        msg : string
     }>
-  ('http://localhost:4000/players/register', player)
+  ('http://localhost:4000/players/Register', player)
   }
+
+  authenticatePlayer(player:RegisterPlayer ) {
+    return this.http.post
+    <{
+      success : boolean,
+       msg : string
+    }>
+    ('http://localhost:4000/players/Authenticate',player) 
+  }
+  storePlayerData(token, player : RegisterPlayer ) {
+    localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(player));
+    this.authToken = token;
+    
+  }
+
 }
