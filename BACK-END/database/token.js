@@ -6,8 +6,6 @@ var player =require ('./playerModel')
 //create a verification token
 const tokenSchema = new Schema({
     _playerId: { type: Schema.Types.ObjectId, required: true, ref: 'player' },
-    token: { type: String, required: true },
-    createdAt: { type: Date, required: true, default: Date.now, expires: 43200
-        /*verification token document will automatically delete itself after 12 hours */ }
+    token: { type: String, required: true }
 });
 module.exports = mongoose.model('tokenSchema',tokenSchema);

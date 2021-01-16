@@ -1,21 +1,26 @@
 import { Injectable } from '@angular/core';
-// import {HttpClientModule,HttpHeaders} from '@angular/common/http';
+import {HttpClientModule,HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 
- export interface IPlayer {
+export interface IPlayer {
   username: string
     email: string
     password: string
 }
+
+export interface RegisterPlayer {
+  username: string
+  password: string;
+}
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   authToken: string;
-
 
   constructor(private http: HttpClient) { }
 
@@ -29,7 +34,7 @@ export class AuthService {
   ('http://localhost:4000/players/register', player)
   }
 
-  authenticatePlayer(player : IPlayer) {
+  authenticatePlayer(player : RegisterPlayer ) {
     return this.http.post
     <{
       success : boolean,
@@ -38,11 +43,11 @@ export class AuthService {
     ('http://localhost:4000/players/authenticate',player)
       
   }
-
-  // storeUserData(token, player) {
+  // storePlayerData(token, player : RegisterPlayer ) {
   //   localStorage.setItem('id_token', token);
-  //   localStorage.setItem('player', JSON.stringify(player));
+  //   localStorage.setItem('user', JSON.stringify(player));
   //   this.authToken = token;
-  //   player = player;
+    
   // }
+
 }
