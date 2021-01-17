@@ -59,6 +59,7 @@ export class AuthService {
   getProfile() {
     return this.http.get 
     <{
+      player:object,
       success : boolean,
       msg : string
     }>

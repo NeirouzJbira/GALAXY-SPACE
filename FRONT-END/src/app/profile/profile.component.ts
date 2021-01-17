@@ -14,14 +14,13 @@ export class ProfileComponent implements OnInit {
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.authService.getProfile().subscribe(profile => {
-      this.player = profile;
-    },
-     err => {
-       console.log(err);
-       return false;
-     });
+  ngOnInit() {
+   this.authService.getProfile().subscribe(profile => {
+    this.player = profile.player;
+  },
+   err => {
+     console.log(err);
+     return false;
+   });
   }
-
 }

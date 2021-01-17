@@ -1,4 +1,4 @@
-var express = require('express');
+
 const router = require("express").Router();
 var jwt = require('jsonwebtoken');
 var Player = require('../../database/playerModel');
@@ -6,6 +6,7 @@ var Token= require('../../database/token');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport =require ('passport');
+
 const { Error } = require('mongoose');
 
 // Register
@@ -60,7 +61,7 @@ router.post('/Authentificate',  function(req,res,next){
        const token = jwt.sign({data: p._id},"secretpleasedon'ttoutch");
        return  res.json({
          success: true,
-         token: `Bearer ${token}`,
+         token:`Bearer ${token}` ,
          player: {
            id: p._id,
            username: p.username,
@@ -106,15 +107,9 @@ router.post('/Authentificate',  function(req,res,next){
   })
   
 //////////////////////////////////////////////////// PROFILE 
-router.get('/Profile',passport.authenticate('bearer', {session : false})  ,function(req,res,next){
-  res.json({
-    player: {
-      _id: req.player._id,
-      username: req.player.username,
-      email: req.player.email,
-    }
-  });
-})
 
-
+router.post('/profile',passport.authenticate('jwt', { session: false }),  (req, res, next) => {
+  res.json({player: req.player});
+});
+ 
 module.exports = router;
