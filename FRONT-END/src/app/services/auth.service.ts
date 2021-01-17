@@ -24,6 +24,7 @@ export interface RegisterPlayer {
 export class AuthService {
   authToken: string;
   player : string;
+  logged : boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -63,11 +64,15 @@ export class AuthService {
     }>
     ('http://localhost:4000/players/profile')   
   }
-  
 
+
+  loggedIn() {
+    this.logged = false;
+  }
   logout() {
     this.authToken = null;
     this.player = null;
+    this.logged = true;
     localStorage.clear();
   }
 }
