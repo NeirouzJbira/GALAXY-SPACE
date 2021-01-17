@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClientModule,HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
+// import {JwtModule} from '@auth0/angular-jwt'
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 
@@ -62,15 +63,11 @@ export class AuthService {
     }>
     ('http://localhost:4000/players/profile')   
   }
+  
 
-  // loadToken() {
-  //   const token = localStorage.getItem('id_token');
-  //   this.authToken = token;
-  // }
-
-  // logout() {
-  //   this.authToken = null;
-  //   this.player = null;
-  //   localStorage.clear();
-  // }
+  logout() {
+    this.authToken = null;
+    this.player = null;
+    localStorage.clear();
+  }
 }
