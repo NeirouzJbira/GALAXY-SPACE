@@ -41,29 +41,26 @@ export class AuthService {
     return this.http.post
     <{
       success : boolean,
-      msg : string,
-     
+      token : string,
+      player : {
+        id : string,
+        username : string,
+        email : string
+      }
     }>
-    ('http://localhost:4000/players/Authenticate',player) 
+    ('http://localhost:4000/players/Authentificate',player) 
   }
 
-  loginPlayer(player:RegisterPlayer ) {
-    return this.http.post
-    <{
-      success : boolean,
-      msg : string,
-    }>
-    ('http://localhost:4000/players/login',player) 
-  }
 
   getProfile() {
+   const token = localStorage.getItem('token')
     return this.http.get 
     <{
-      player:object,
+      player: object,
       success : boolean,
       msg : string
     }>
-    ('http://localhost:4000/players/profile')   
+    ('http://localhost:4000/players/profile',{headers:{"Authorization": token}})   
   }
 
 

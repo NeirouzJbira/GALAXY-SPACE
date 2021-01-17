@@ -25,10 +25,11 @@ export class LoginComponent implements OnInit {
       password: this.password
     }
 
-    this.authService.loginPlayer(registerplayer).subscribe(data => {
+    this.authService.authenticatePlayer(registerplayer).subscribe(data => {
         if(data.success) {
           console.log('You are login now');     
-          this.router.navigate(['uploadImge']);
+          localStorage.setItem('token',data.token)
+          this.router.navigate(['profile']);
         }else {
           this.router.navigate(['login']);
           console.log('please verified your account');
