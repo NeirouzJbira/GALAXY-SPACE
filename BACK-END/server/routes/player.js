@@ -1,4 +1,4 @@
-var express = require('express');
+
 const router = require("express").Router();
 var jwt = require('jsonwebtoken');
 var Player = require('../../database/playerModel');
@@ -6,6 +6,7 @@ var Token= require('../../database/token');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
 var passport =require ('passport');
+
 const { Error } = require('mongoose');
 
 // Register
@@ -60,7 +61,7 @@ router.post('/Authentificate',  function(req,res,next){
        const token = jwt.sign({data: p._id},"secretpleasedon'ttoutch");
        return  res.json({
          success: true,
-         token: `Bearer ${token}`,
+         token:`Bearer ${token}` ,
          player: {
            id: p._id,
            username: p.username,
@@ -98,23 +99,17 @@ router.post('/Authentificate',  function(req,res,next){
   });
  
   ///////////////////////////////////////////////////////////////////////////////// LOGIN
-  // router.post('/login',  function(req,res){
-  // // Make sure the player has been verified
-  // if (!Player.isVerified) return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' }); 
-  // // Login successful, write token, and send back user
-  // res.send({ token: generateToken(Player), player: Player.toJSON() });
-  // })
- 
+  router.post('/login',  function(req,res){
+  // Make sure the player has been verified
+  if (!Player.isVerified) return res.status(200).send({ success: true, msg: 'Your account has been verified.' })
+  // Login successful, write token, and send back user
+ return res.status(404).send({ success: false, msg: 'Your account has not been verified.' })
+  })
+  
 //////////////////////////////////////////////////// PROFILE 
-router.get('/Profile',passport.authenticate('bearer', {session : false})  ,function(req,res,next){
-  res.json({
-    player: {
-      _id: req.player._id,
-      username: req.player.username,
-      email: req.player.email,
-    }
-  });
-})
 
-
+router.post('/profile',passport.authenticate('jwt', { session: false }),  (req, res, next) => {
+  res.json({player: req.player});
+});
+ 
 module.exports = router;

@@ -21,13 +21,16 @@ import { LoginComponent } from './login/login.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RpsComponent } from './rps/rps.component';
 import { QuizComponent } from './quiz/quiz.component';
+import { Navbar2Component } from './navbar2/navbar2.component';
+import { UploadImageComponent } from './upload-image/upload-image.component';
 
 
 
-const appRoutes: Routes =  [
+const appRoutes: Routes =[
   {path:'', component: HomepageComponent},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
+  {path:'uploadImge', component:UploadImageComponent},
   {path:'profile', component: ProfileComponent},
   {path :'rpsgame', component: RpsComponent},
   {path:'quizgame', component:QuizComponent}
@@ -37,12 +40,14 @@ const appRoutes: Routes =  [
   declarations: [
     AppComponent,
     NavbarComponent,
+    Navbar2Component,
     HomepageComponent,
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
     RpsComponent,
-    QuizComponent
+    QuizComponent,
+    UploadImageComponent
   ],
   imports: [
     BrowserModule,

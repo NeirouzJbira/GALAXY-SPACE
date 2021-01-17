@@ -1,1 +1,11 @@
-<p>profile works!</p>
+<app-navbar2></app-navbar2>
+
+<div class="profile">
+<div *ngIf="player">
+    <h2 class="page-header"> WELCOME {{player.username}} <br> HAVE FUN </h2>
+    <ul class="list-group">
+    <li class="list-group-item">username :{{player.username}}</li>
+    <li class="list-group-item">Email :{{player.email}}</li>
+    </ul>
+</div>
+</div>

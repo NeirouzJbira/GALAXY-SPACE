@@ -47,10 +47,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // ADDING BODY-PARSER middlware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : true}))
+app.use(bodyParser.urlencoded({extended : true}));
+
 // PASSPORT middlware
 app.use(passport.initialize());
 app.use(passport.session());
+
 
 require('../database/passport',passport)
 app.use('/players', playersRouter);

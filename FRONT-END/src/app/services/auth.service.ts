@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClientModule,HttpHeaders} from '@angular/common/http';
 import {HttpClient} from '@angular/common/http';
+// import {JwtModule} from '@auth0/angular-jwt'
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 
@@ -22,6 +23,8 @@ export interface RegisterPlayer {
 
 export class AuthService {
   authToken: string;
+  player : string;
+  logged : boolean;
 
   constructor(private http: HttpClient) { }
 
@@ -38,15 +41,39 @@ export class AuthService {
     return this.http.post
     <{
       success : boolean,
-       msg : string
+      msg : string,
+     
     }>
     ('http://localhost:4000/players/Authenticate',player) 
   }
-  storePlayerData(token, player : RegisterPlayer ) {
-    localStorage.setItem('id_token', token);
-    localStorage.setItem('user', JSON.stringify(player));
-    this.authToken = token;
-    
+
+  loginPlayer(player:RegisterPlayer ) {
+    return this.http.post
+    <{
+      success : boolean,
+      msg : string,
+    }>
+    ('http://localhost:4000/players/login',player) 
   }
 
+  getProfile() {
+    return this.http.get 
+    <{
+      player:object,
+      success : boolean,
+      msg : string
+    }>
+    ('http://localhost:4000/players/profile')   
+  }
+
+
+  loggedIn() {
+    this.logged = false;
+  }
+  logout() {
+    this.authToken = null;
+    this.player = null;
+    this.logged = true;
+    localStorage.clear();
+  }
 }
