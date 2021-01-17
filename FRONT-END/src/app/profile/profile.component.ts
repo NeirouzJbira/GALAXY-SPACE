@@ -8,10 +8,20 @@ import { Router } from '@angular/router'
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor() { }
+  player:Object;
+  constructor(
+    private authService:AuthService, 
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
+    this.authService.getProfile().subscribe(profile => {
+      this.player = profile;
+    },
+     err => {
+       console.log(err);
+       return false;
+     });
   }
 
 }
