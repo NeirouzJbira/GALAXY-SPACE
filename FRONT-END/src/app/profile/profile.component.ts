@@ -23,4 +23,8 @@ export class ProfileComponent implements OnInit {
      return false;
    });
   }
+  
+  onstartplaying(){
+    this.router.navigate(['rpsgame']);
+  }
 }
