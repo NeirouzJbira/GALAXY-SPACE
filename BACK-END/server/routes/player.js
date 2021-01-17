@@ -98,13 +98,13 @@ router.post('/Authentificate',  function(req,res,next){
   });
  
   ///////////////////////////////////////////////////////////////////////////////// LOGIN
-  // router.post('/login',  function(req,res){
-  // // Make sure the player has been verified
-  // if (!Player.isVerified) return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' }); 
-  // // Login successful, write token, and send back user
-  // res.send({ token: generateToken(Player), player: Player.toJSON() });
-  // })
- 
+  router.post('/login',  function(req,res){
+  // Make sure the player has been verified
+  if (!Player.isVerified) return res.status(200).send({ success: true, msg: 'Your account has been verified.' })
+  // Login successful, write token, and send back user
+ return res.status(404).send({ success: false, msg: 'Your account has not been verified.' })
+  })
+  
 //////////////////////////////////////////////////// PROFILE 
 router.get('/Profile',passport.authenticate('bearer', {session : false})  ,function(req,res,next){
   res.json({

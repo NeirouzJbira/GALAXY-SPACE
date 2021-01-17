@@ -22,6 +22,7 @@ export interface RegisterPlayer {
 
 export class AuthService {
   authToken: string;
+  player : string;
 
   constructor(private http: HttpClient) { }
 
@@ -38,15 +39,38 @@ export class AuthService {
     return this.http.post
     <{
       success : boolean,
-       msg : string
+      msg : string,
+     
     }>
     ('http://localhost:4000/players/Authenticate',player) 
   }
-  storePlayerData(token, player : RegisterPlayer ) {
-    localStorage.setItem('id_token', token);
-    localStorage.setItem('user', JSON.stringify(player));
-    this.authToken = token;
-    
+
+  loginPlayer(player:RegisterPlayer ) {
+    return this.http.post
+    <{
+      success : boolean,
+      msg : string,
+    }>
+    ('http://localhost:4000/players/login',player) 
   }
 
+  getProfile() {
+    return this.http.get 
+    <{
+      success : boolean,
+      msg : string
+    }>
+    ('http://localhost:4000/players/profile')   
+  }
+
+  // loadToken() {
+  //   const token = localStorage.getItem('id_token');
+  //   this.authToken = token;
+  // }
+
+  // logout() {
+  //   this.authToken = null;
+  //   this.player = null;
+  //   localStorage.clear();
+  // }
 }
