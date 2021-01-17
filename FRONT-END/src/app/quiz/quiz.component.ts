@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -14,7 +15,7 @@ export class QuizComponent implements OnInit {
   currentIndex: number;
   score: any;
   noAnswer: any;
-  constructor( ) {
+  constructor(private router: Router ) {
     this.questions = [
       {
         id: 1,
@@ -104,12 +105,13 @@ export class QuizComponent implements OnInit {
         else {
           this.noAnswer++;
         }
-
+        
         x.selected = 0;
       });
     } 
   }
-
+  // this.router.navigate(['/rpsgame']);
+  
   start(){
     this.complete = false;
     this.currentIndex = 0;

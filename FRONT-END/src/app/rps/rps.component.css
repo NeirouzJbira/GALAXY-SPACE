@@ -1,3 +1,9 @@
+.rpsgame{
+  height: 100%;
+  width: 100%;
+  bottom: 100px;
+  margin: 50px auto auto auto;
+}
 mat-card {
     margin: 8px;
   }

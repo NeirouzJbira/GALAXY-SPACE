@@ -64,6 +64,6 @@ input[type="radio"].quiz-radio {
   }
 
   .btn {
-    background-color: red;
+    background-color: rgb(206, 65, 152);
     position:relative; ; top:55px; ;
   }
