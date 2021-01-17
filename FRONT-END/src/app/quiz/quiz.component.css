@@ -1,0 +1,69 @@
+input[type="radio"].quiz-radio {
+    margin-right: 6px;
+    margin: 0 20px 0 20px;
+    text-decoration: underline;
+    text-transform: uppercase;
+    
+  }
+  
+  .btn:focus, .btn:active, .btn:active:focus {
+    outline: none;
+    text-decoration: underline;
+    
+    
+  }
+  
+  .row1 {
+    font-size: 18px;
+    margin-top: 130px;
+    text-align: center;
+    text-decoration: underline;
+    text-size-adjust: 80%;
+    text-transform: uppercase;
+    color: black
+    
+    
+  }
+  .row{
+    text-align: center;
+    text-decoration: underline;
+    color: black
+    
+   
+  }
+  
+    /*.container{ background-image: url(https://64.media.tumblr.com/23e02b02c95979dfd640429ef5f65cfd/tumblr_myh8nkZqLu1qz4m18o1_r1_1280.gifv); */
+    /* height: 40%;
+    width: 40%;
+
+    top:25%;
+    left:25%;
+
+
+  
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover; } */
+
+
+  .size{
+      font-size: 15px;
+  }
+
+  html, body, .screen{
+    width: 100%;
+    height: 100%;
+    min-width: 500px;
+    min-height: 500px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .screen{
+    background-image: url(https://lh3.googleusercontent.com/proxy/f3lKEuk_cIvY1_nVlC310BQqpTstbli8mrYFPu9DRWy0-cqavbaPOrbflEyLTrWfuQCbNNBNxRyLbF61xO3cTwEAHH3NMek);
+  }
+
+  .btn {
+    background-color: red;
+    position:relative; ; top:55px; ;
+  }

@@ -1,1 +1,59 @@
-<p>quiz works!</p>
+<div class="screen">
+  
+    <div class="container">
+    </div>
+    <div class="size">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="col-xs-12">
+          <hello *ngIf="!begin && !complete"></hello>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row1" *ngIf="complete">
+      <div class="col-xs-12">
+        <div class="col-xs-12" >
+          <div>
+            <h4>Quiz Result: {{score}}/{{questions.length}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row1" *ngIf="begin">
+      <div class="col-xs-12">
+        <div class="col-xs-12">
+          <h4>{{currentQuestion.question}}</h4>
+          <div *ngFor="let option of currentQuestion.option">
+            <input class="quiz-radio" type="radio" name="{{currentQuestion.id}}" value="{{option.optionid}}" [(ngModel)]="currentQuestion.selected" />{{option.name}}
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row1" *ngIf="!begin" >
+      <div class="col-xs-12">
+        <div class="col-xs-12">
+          <input class="btn btn-success quiz-btn" type="button" value="{{buttonName}}" (click)="start()"/>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row1" *ngIf="begin">
+      <div class="col-xs-12">
+        <div class="col-xs-12">
+          <input class="btn" type="button" *ngIf="(currentIndex + 1) != questions.length" value="𝙉𝙚𝙭𝙩 𝙌𝙪𝙚𝙨𝙩𝙞𝙤𝙣" (click)="next()"/>
+        </div>
+      </div>
+    </div>
+    <div class="row1" *ngIf="begin && currentIndex == questions.length - 1">
+      <div class="col-xs-12">
+        <div class="col-xs-12">
+          <input class="btn btn-success quiz-btn" type="button" value="Submit" (click)="submit()"/>
+        </div>
+      </div>
+    </div>
+    <div>
+    </div>
+    </div>
