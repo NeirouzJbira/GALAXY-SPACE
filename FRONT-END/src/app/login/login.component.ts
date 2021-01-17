@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     this.authService.loginPlayer(registerplayer).subscribe(data => {
         if(data.success) {
           console.log('You are login now');     
-          this.router.navigate(['profile']);
+          this.router.navigate(['uploadImge']);
         }else {
           this.router.navigate(['login']);
           console.log('please verified your account');
