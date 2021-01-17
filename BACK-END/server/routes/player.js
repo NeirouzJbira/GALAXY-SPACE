@@ -58,7 +58,7 @@ router.post('/Authentificate',  function(req,res,next){
   .then((isMatch) =>{
     // console.log(p)
      if (!isMatch) throw new Error ("wrong password")
-       const token = jwt.sign({data: p._id},"secretpleasedon'ttoutch");
+       const token = jwt.sign({data: p._id},"secret");
        return  res.json({
          success: true,
          token:`Bearer ${token}` ,
@@ -98,18 +98,13 @@ router.post('/Authentificate',  function(req,res,next){
     })
   });
  
-  ///////////////////////////////////////////////////////////////////////////////// LOGIN
-  router.post('/login',  function(req,res){
-  // Make sure the player has been verified
-  if (!Player.isVerified) return res.status(200).send({ success: true, msg: 'Your account has been verified.' })
-  // Login successful, write token, and send back user
- return res.status(404).send({ success: false, msg: 'Your account has not been verified.' })
-  })
+
+ 
   
 //////////////////////////////////////////////////// PROFILE 
 
-router.post('/profile',passport.authenticate('jwt', { session: false }),  (req, res, next) => {
-  res.json({player: req.player});
+router.get('/profile',passport.authenticate('jwt', { session: false }),  (req, res, next) => {
+  res.json({player: req.user});
 });
  
 module.exports = router;

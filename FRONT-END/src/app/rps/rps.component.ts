@@ -1,11 +1,14 @@
 import { Component} from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-rps',
   templateUrl: './rps.component.html',
   styleUrls: ['./rps.component.css']
 })
 export class RpsComponent  {
+  constructor(
+    private router: Router,
+  ) { }
 
   public computerResult: string;
   public result: string;
@@ -14,7 +17,7 @@ export class RpsComponent  {
   private userResult: string;
 
   public play(action: string): void {
-    console.log('USER: ', action);
+    // console.log('USER: ', action);
     this.userResult = action;
     this.computer();
     this.calculateWinner();
@@ -24,7 +27,7 @@ export class RpsComponent  {
     const randomNumber = Math.floor(Math.random() * 3);
     const options: string[] = [ 'rock', 'paper', 'scissors' ];
 
-    console.log('COMPUTER: ', options[randomNumber]);
+    // console.log('COMPUTER: ', options[randomNumber]);
     this.computerResult = options[randomNumber];
   }
 
@@ -47,15 +50,21 @@ export class RpsComponent  {
     }
     if (this.userResult === 'paper' && this.computerResult === 'scissors') {
       this.results.computer++;
-      this.result = ' Computer wins';
+      this.result = 'Computer wins';
     }
     if (this.userResult === 'scissors' && this.computerResult === 'rock') {
       this.results.computer++;
-      this.result = ' Computer wins';
+      this.result = 'Computer wins';
     }
     if (this.userResult === 'scissors' && this.computerResult === 'paper') {
       this.results.player++;
-      this.result = ' You win';
+     this.result = 'You win';
     }
+    
   };
+
+  next(){
+    if(this.result === "You win")
+    this.router.navigate(['/quizgame']);
+  }
 };

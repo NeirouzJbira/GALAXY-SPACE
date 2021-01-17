@@ -30,7 +30,7 @@ const appRoutes: Routes =[
   {path:'', component: HomepageComponent},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
-  {path:'uploadImge', component:UploadImageComponent},
+  {path:'uploadImage', component:UploadImageComponent},
   {path:'profile', component: ProfileComponent},
   {path :'rpsgame', component: RpsComponent},
   {path:'quizgame', component:QuizComponent}

@@ -52,7 +52,7 @@ app.use(bodyParser.urlencoded({extended : true}));
 // PASSPORT middlware
 app.use(passport.initialize());
 app.use(passport.session());
-
+require('../database/passport')(passport)
 
 require('../database/passport',passport)
 app.use('/players', playersRouter);
