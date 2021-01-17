@@ -8,7 +8,7 @@ opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'secret';
 
 passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
-  console.log(jwt_payload);
+  // console.log(jwt_payload);
     Player.getUserById(jwt_payload.data, (err, player) => {
       
       if(err){
