@@ -33,32 +33,32 @@ export class RpsComponent  {
 
   private calculateWinner(): void {
     if (this.userResult === this.computerResult) {
-      this.result = 'There was a tie / draw';
+      this.result = '🍭 There was a tie / draw 🍭';
     }
 
     if (this.userResult === 'rock' && this.computerResult === 'paper') {
       this.results.computer++;
-      this.result = 'Computer wins';
+      this.result = '🐒 🐖 𝘾𝙤𝙢𝙥𝙪𝙩𝙚𝙧 𝙬𝙞𝙣𝙨 🐖 🐒';
     }
     if (this.userResult === 'rock' && this.computerResult === 'scissors') {
       this.results.player++;
-      this.result = 'You win';
+      this.result = '🏆 😈 𝙔𝙤𝙪 𝙬𝙞𝙣 😈 🏆';
     }
     if (this.userResult === 'paper' && this.computerResult === 'rock') {
       this.results.player++;
-      this.result = 'You win';
+      this.result = '🏆 😈 𝙔𝙤𝙪 𝙬𝙞𝙣 😈 🏆';
     }
     if (this.userResult === 'paper' && this.computerResult === 'scissors') {
       this.results.computer++;
-      this.result = 'Computer wins';
+      this.result = '🐒 🐖 𝘾𝙤𝙢𝙥𝙪𝙩𝙚𝙧 𝙬𝙞𝙣𝙨 🐖 🐒';
     }
     if (this.userResult === 'scissors' && this.computerResult === 'rock') {
       this.results.computer++;
-      this.result = 'Computer wins';
+      this.result = '🐒 🐖 𝘾𝙤𝙢𝙥𝙪𝙩𝙚𝙧 𝙬𝙞𝙣𝙨 🐖 🐒';
     }
     if (this.userResult === 'scissors' && this.computerResult === 'paper') {
       this.results.player++;
-     this.result = 'You win';
+     this.result = '🏆 😈 𝙔𝙤𝙪 𝙬𝙞𝙣 😈 🏆';
     }
     
   };
