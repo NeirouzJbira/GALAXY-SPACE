@@ -50,7 +50,12 @@ export class AuthService {
     }>
     ('http://localhost:4000/players/Authentificate',player) 
   }
-
+  
+  getimage(Image: FormData){
+    return this.http.post
+    ('http://localhost:4000/players/upload',Image)   
+  } //get  res data base image 
+  
 
   getProfile() {
    const token = localStorage.getItem('token')
