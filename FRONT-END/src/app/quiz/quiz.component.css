@@ -51,16 +51,30 @@ input[type="radio"].quiz-radio {
   }
 
   html, body, .screen{
-    width: 100%;
-    height: 100%;
-    min-width: 500px;
-    min-height: 500px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+   
+     min-height: 100%;
+  min-width: 1024px;
+	
+  /* Set up proportionate scaling */
+  width: 100%;
+  height: auto;
+	
+  /* Set up positioning */
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (max-width: 1024px) { /* Specific to this particular image */
+  img.bg {
+    left: 50%;
+    margin-left: -512px;   /* 50% */
+  }
+   
   }
   .screen{
-    background-image: url(https://lh3.googleusercontent.com/proxy/f3lKEuk_cIvY1_nVlC310BQqpTstbli8mrYFPu9DRWy0-cqavbaPOrbflEyLTrWfuQCbNNBNxRyLbF61xO3cTwEAHH3NMek);
+    background-image: url(https://lh3.googleusercontent.com/proxy/Guh0zJ-1nBCj_B9kDII_6ZxGpGxtxqP05JNAYtoV7UaMc3E6LtFgFjk9kc8LkAvRW_ih4AWw9DfIjdl0eW-XE-osaeNIKX8);
+   
   }
 
   .btn {

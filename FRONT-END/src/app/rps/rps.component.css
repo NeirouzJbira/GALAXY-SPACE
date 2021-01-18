@@ -6,4 +6,47 @@
 }
 mat-card {
     margin: 8px;
+     
+  }
+
+  .screeen {
+ 
+    background-image: url(https://i.pinimg.com/originals/9f/5f/bf/9f5fbf9e4aa1232c88f2cc4c88a6937b.gif);
+    min-height: 100%;
+    min-width: 1024px;
+    
+    
+    width: 100%;
+    height: auto;
+    
+   
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  @media screen and (max-width: 1024px) { 
+    img.bg {
+      left: 50%;
+      margin-left: -512px;   
+    }
+     
+  }
+  .move{
+    margin-top: 130px;
+    color: black;
+  }
+  .btnn {
+    background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  
+  position: absolute;
+  right: 50%;
+
   }

@@ -1,3 +1,5 @@
+
+<div class="screeen">
 <app-navbar2></app-navbar2>
 <div class="rpcgame">
 <mat-toolbar>
@@ -5,29 +7,33 @@
     <span fxFlex></span>
     <span>Player {{ results.player }} / Computer {{ results.computer }}</span>
   </mat-toolbar>
-
+  
   <div fxLayout="row" fxLayoutAlign="space-between" fxLayoutGap="20px">
     <mat-card>
+      
       <mat-card-header>
+        
         <div mat-card-avatar></div>
         <mat-icon mat-card-avatar>sports_soccer</mat-icon>
-        <mat-card-title>Rock</mat-card-title>
+        <mat-card-title>𝙍𝙤𝙘𝙠</mat-card-title>
         <mat-card-subtitle>Rock beats Scissors</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions>
-        <button mat-button (click)="play('rock')" color="accent">Play with Rock</button>
+        <button mat-button (click)="play('rock')" color="accent">𝗣𝗹𝗮𝘆 𝘄𝗶𝘁𝗵 𝗥𝗼𝗰𝗸</button>
+      
       </mat-card-actions>
+   
     </mat-card>
   
     <mat-card>
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-icon mat-card-avatar>file_copy</mat-icon>
-        <mat-card-title>Paper</mat-card-title>
+        <mat-card-title>𝙋𝙖𝙥𝙚𝙧</mat-card-title>
         <mat-card-subtitle>Paper beats Rock</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions>
-        <button mat-button (click)="play('paper')" color="accent">Play with Paper</button>
+        <button mat-button (click)="play('paper')" color="accent">𝗣𝗹𝗮𝘆 𝘄𝗶𝘁𝗵 𝗣𝗮𝗽𝗲𝗿</button>
       </mat-card-actions>
     </mat-card>
   
@@ -35,16 +41,16 @@
       <mat-card-header>
         <div mat-card-avatar></div>
         <mat-icon mat-card-avatar>restaurant</mat-icon>
-        <mat-card-title>Scissors</mat-card-title>
+        <mat-card-title>𝙎𝙘𝙞𝙨𝙨𝙤𝙧𝙨</mat-card-title>
         <mat-card-subtitle>Scissors beats Paper</mat-card-subtitle>
       </mat-card-header>
       <mat-card-actions>
-        <button mat-button (click)="play('scissors')" color="accent">Play with Scissors</button>
+        <button mat-button (click)="play('scissors')" color="accent">𝗣𝗹𝗮𝘆 𝘄𝗶𝘁𝗵 𝗦𝗰𝗶𝘀𝘀𝗼𝗿𝘀</button>
       </mat-card-actions>
     </mat-card>
   </div>
-  
-  <mat-card>
+  <div>
+  <mat-card class="move">
     <mat-card-header>
       <mat-icon *ngIf="computerResult === 'rock'" mat-card-avatar aria-hidden="false">sports_soccer</mat-icon>
       <mat-icon *ngIf="computerResult === 'paper'" mat-card-avatar aria-hidden="false">file_copy</mat-icon>
@@ -56,5 +62,6 @@
     <h1>{{ result }}</h1>
     </mat-card-content>
   </mat-card>
-  <button  (click)="next()" > go go go </button>
+  <button class="btnn"  (click)="next()" > go go go </button>
+</div>
 </div>
