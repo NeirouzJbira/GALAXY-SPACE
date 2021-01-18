@@ -65,6 +65,7 @@ export class RpsComponent  {
 
   next(){
     if(this.result === "You win")
+    console.log('quiz game ')
     this.router.navigate(['/quizgame']);
   }
 };
